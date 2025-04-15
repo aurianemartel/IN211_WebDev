@@ -76,8 +76,11 @@ function Home() {
 
       <h2> Films populaires </h2>
       {movies.map((movie) =>
-        <li key={movie.id}>
+        <li
+          className="App-movieList"
+          key={movie.id}>
           <Movie
+            className="movie"
             title={movie.title}
             date={movie.release_date}
             img={config.images.base_url + config.images.poster_sizes[1] + movie.poster_path}
