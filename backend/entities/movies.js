@@ -8,7 +8,10 @@ const Movie = new typeorm.EntitySchema({
       generated: 'uuid',
       type: String,
     },
-    title: { type: String },
+    title: { 
+      type: String,
+      unique: true,
+    },
     date: { type: String },
   },
 });
