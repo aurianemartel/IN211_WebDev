@@ -2,27 +2,29 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Home.css';
 import Movie from '../../components/Movie/Movie';
+import { Router } from 'react-router-dom';
+import { useNavigate } from "react-router";
+
 
 const useFetchConfig = () => {
-  const [config, setConfig] = useState([]);
-  const [configLoadingError, setConfigLoadingError] = useState(null);
+  const [config, setConfig] = useState({});
 
   useEffect(() => {
     axios
       .get(`https://api.themoviedb.org/3/configuration?api_key=57359ff087905e870d40ba4880a1dce0`)
       .then((response) => {
         // If call succeeded
+        console.log("config data", response.data);
         setConfig(response.data);
         console.log(config);
       })
       .catch((error) => {
         // If call failed
-        setConfigLoadingError('An error occured while fetching the configuration');
-        console.error(error);
+        console.error('An error occured while fetching the configuration:' + error);
       });
-  }, []);
+  }, [config]);
 
-  return { config, configLoadingError };
+  return config;
 };
 
 
@@ -45,14 +47,16 @@ const useFetchMovies = () => {
       });
   }, []);
 
-  return { movies, moviesLoadingError };
+  return { movies };
 };
 
 
 function Home() {
   const [movieName, setMovieName] = useState("");
-  const { movies, moviesLoadingError } = useFetchMovies();
-  const { config, configLoadingError } = useFetchConfig();
+  const { movies } = useFetchMovies();
+  const { config } = useFetchConfig();
+
+  //const navigate = useNavigate();
 
   return (
     <div className="App">
@@ -70,6 +74,7 @@ function Home() {
           value={movieName}
           onChange={(event) => setMovieName(event.target.value)}
         />
+        <button onClick={() => navigate("/add-movie")}>Increment counter</button>
       </header>
 
       <h2> Résultats pour "{movieName}" </h2>
