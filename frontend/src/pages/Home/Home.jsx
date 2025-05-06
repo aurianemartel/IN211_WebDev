@@ -5,58 +5,58 @@ import Movie from '../../components/Movie/Movie';
 import { Router } from 'react-router-dom';
 import { useNavigate } from "react-router";
 
+const img_url = "http://image.tmdb.org/t/p/w154"
 
-const useFetchConfig = () => {
-  const [config, setConfig] = useState({});
+// const useFetchConfig = () => {
+//   const [config, setConfig] = useState({});
 
-  useEffect(() => {
-    axios
-      .get(`https://api.themoviedb.org/3/configuration?api_key=57359ff087905e870d40ba4880a1dce0`)
-      .then((response) => {
-        // If call succeeded
-        console.log("config data", response.data);
-        setConfig(response.data);
-        console.log(config);
-      })
-      .catch((error) => {
-        // If call failed
-        console.error('An error occured while fetching the configuration:' + error);
-      });
-  }, [config]);
+//   useEffect(() => {
+//     axios
+//       .get(`https://api.themoviedb.org/3/configuration?api_key=57359ff087905e870d40ba4880a1dce0`)
+//       .then((response) => {
+//         // If call succeeded
+//         console.log("response : config data", response.data.images);
+//         setConfig(response.data.images);
+//         console.log("config", config);
+//       })
+//       .catch((error) => {
+//         // If call failed
+//         console.error('An error occured while fetching the configuration:' + error);
+//       });
+//   }, []);
 
-  return config;
-};
+//   return { config };
+// };
 
 
 const useFetchMovies = () => {
   const [movies, setMovies] = useState([]);
-  const [moviesLoadingError, setMoviesLoadingError] = useState(null);
 
   useEffect(() => {
     axios
       .get(`https://api.themoviedb.org/3/movie/popular?api_key=57359ff087905e870d40ba4880a1dce0`)
       .then((response) => {
         // If call succeeded
+        //console.log("response : movies", response.data.results)
         setMovies(response.data.results);
-        console.log(movies);
+        console.log("movies :", movies);
       })
       .catch((error) => {
         // If call failed
-        setMoviesLoadingError('An error occured while fetching movies');
-        console.error(error);
+        console.error('An error occured while fetching movies' + error);
       });
   }, []);
 
   return { movies };
 };
 
-
 function Home() {
   const [movieName, setMovieName] = useState("");
   const { movies } = useFetchMovies();
-  const { config } = useFetchConfig();
+  //const { config } = useFetchConfig();
 
-  //const navigate = useNavigate();
+
+  const navigate = useNavigate();
 
   return (
     <div className="App">
@@ -66,6 +66,8 @@ function Home() {
 
         <h1> Films disponibles </h1>
 
+        <button onClick={() => navigate("/add-movie")}>Add Movie</button>
+
         <input
           type="text"
           id="Movie name input"
@@ -74,7 +76,6 @@ function Home() {
           value={movieName}
           onChange={(event) => setMovieName(event.target.value)}
         />
-        <button onClick={() => navigate("/add-movie")}>Increment counter</button>
       </header>
 
       <h2> Résultats pour "{movieName}" </h2>
@@ -88,11 +89,12 @@ function Home() {
             className="movie"
             title={movie.title}
             date={movie.release_date}
-            img={config.images.base_url + config.images.poster_sizes[1] + movie.poster_path}
+            img={img_url + movie.poster_path}
 
           />
         </li>
       )}
+
 
     </div >
   );

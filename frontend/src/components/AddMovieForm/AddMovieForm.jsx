@@ -3,7 +3,7 @@ import axios from 'axios';
 import './AddMovieForm.css';
 
 const DEFAULT_FORM_VALUES = {
-    name: '',
+    title: '',
     date: '',
 };
 
@@ -22,19 +22,19 @@ const useSaveMovie = () => {
         event.preventDefault();
 
         setMovieCreationError(null);
-        if (formValues.name === '') {
+        if (formValues.title === '') {
             console.error('Missing name, this field is required');
             return;
         }
 
         axios
-            .post(`${import.meta.env.VITE_BACKDEND_URL}/api/movies/new`, formValues)
+            .post(`${import.meta.env.VITE_BACKDEND_URL}/movies/new`, formValues)
             .then(() => {
                 displayCreationSuccessMessage();
                 setFormValues(DEFAULT_FORM_VALUES);
             })
             .catch((error) => {
-                setMovieCreationError('An error occured while creating new user.');
+                setMovieCreationError('An error occured while creating new movie.');
                 console.error(error);
             });
     };
@@ -54,10 +54,10 @@ function AddMovieForm() {
             >
                 <input
                     className="add-movie-input"
-                    placeholder="Name"
-                    value={formValues.name}
+                    placeholder="Titre"
+                    value={formValues.title}
                     onChange={(event) =>
-                        setFormValues({ ...formValues, name: event.target.value })
+                        setFormValues({ ...formValues, title: event.target.value })
                     }
                 />
                 <input
