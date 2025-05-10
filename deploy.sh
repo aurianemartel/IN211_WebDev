@@ -6,6 +6,7 @@ set -e  # Stop on error
 echo "🔧 Build du frontend..."
 cd frontend
 npm install
+echo "VITE_BACKEND_URL=https://in211-auriane.vercel.app/api" > .env.production
 npm run build
 cd ..
 
@@ -13,7 +14,6 @@ cd ..
 echo "📦 Copie des fichiers dans le backend/public..."
 rm -rf backend/public/*
 cp -r frontend/build/* backend/public/
-echo "VITE_BACKEND_URL=https://in211-auriane.vercel.app" > backend/public/.env.production
 
 # 3. Déploiement sur Vercel
 echo "🚀 Déploiement sur Vercel..."

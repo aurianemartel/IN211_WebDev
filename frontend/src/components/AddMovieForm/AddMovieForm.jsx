@@ -28,7 +28,7 @@ const useSaveMovie = () => {
         }
 
         axios
-            .post(`${import.meta.env.VITE_BACKDEND_URL}/movies/new`, formValues)
+            .post(`${import.meta.env.VITE_BACKEND_URL}/movies/new`, formValues)
             .then(() => {
                 displayCreationSuccessMessage();
                 setFormValues(DEFAULT_FORM_VALUES);
