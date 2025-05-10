@@ -1,7 +1,7 @@
 import typeorm from 'typeorm';
 
 const Movie = new typeorm.EntitySchema({
-  name: 'Movie',
+  name: 'movie',
   columns: {
     id: {
       primary: true,

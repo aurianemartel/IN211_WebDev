@@ -10,15 +10,20 @@
     "migration:generate": "dotenv -- typeorm --dataSource='./datasource.js' migration:generate --outputJs --pretty migrations/$npm_config_name",
     "postmigration:generate": "./postmigration.sh",
     "migration:run": "dotenv -- typeorm --dataSource='./datasource.js' migration:run",
-    "migration:revert": "dotenv -- typeorm --dataSource='./datasource.js' migration:revert"
+    "migration:show": "dotenv -- typeorm --dataSource='./datasource.js' migration:show",
+    "migration:revert": "dotenv -- typeorm --dataSource='./datasource.js' migration:revert",
+    "delete-migration-table": "dotenv node delete-migration.js",
+    "drop-migration-table": "dotenv node drop-migration.js",
+    "vercel-build": "npm run migration:run"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv-cli": "^7.4.1",
     "express": "^4.18.3",
     "morgan": "^1.10.0",
-    "pg": "^8.11.3",
-    "typeorm": "^0.3.20"
+    "pg": "^8.15.6",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.23"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
@@ -26,6 +31,7 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.1.3",
     "nodemon": "^3.1.0",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2"
   }
 }
