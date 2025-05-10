@@ -81,19 +81,21 @@ function Home() {
       <h2> Résultats pour "{movieName}" </h2>
 
       <h2> Films populaires </h2>
-      {movies.map((movie) =>
-        <li
-          className="App-movieList"
-          key={movie.id}>
-          <Movie
-            className="movie"
-            title={movie.title}
-            date={movie.release_date}
-            img={img_url + movie.poster_path}
+      <div className="App-moviegrid">
+        {movies.map((movie) =>
+          <li
+            className="App-movieList"
+            key={movie.id}>
+            <Movie
+              className="movie"
+              title={movie.title}
+              date={movie.release_date}
+              img={img_url + movie.poster_path}
 
-          />
-        </li>
-      )}
+            />
+          </li>
+        )}
+      </div>
 
 
     </div >

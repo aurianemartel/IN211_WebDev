@@ -12,6 +12,13 @@
     color: white;
   }
 
+  .App-moviegrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
   .App-movieList {
     display: flex;
     flex-flow: row nowrap;
