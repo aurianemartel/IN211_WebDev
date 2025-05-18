@@ -1,6 +1,6 @@
 #!/bin/bash
 
-URL=https://in211-auriane-hxs21isig-auriane-martels-projects.vercel.app
+URL=https://in211-auriane.vercel.app
 
 if [ $# = 2 ]
 then

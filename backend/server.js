@@ -10,6 +10,9 @@ import { appDataSource } from './datasource.js';
 
 const apiRouter = express.Router();
 
+console.log("Database host", process.env.DATABASE_HOST);
+console.log("Database url", process.env.DATABASE_DATABASE_URL);
+
 appDataSource
   .initialize()
   .then(() => {

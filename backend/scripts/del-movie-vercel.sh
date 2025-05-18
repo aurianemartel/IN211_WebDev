@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BACK=https://in211-auriane-hxs21isig-auriane-martels-projects.vercel.app
+BACK=https://in211-auriane.vercel.app
 arg="$1"
 
 if [ "$arg" == "all" ]; then

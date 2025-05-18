@@ -1,8 +1,8 @@
 #!/bin/bash
 
 API_KEY="57359ff087905e870d40ba4880a1dce0"
-BACKEND_URL="http://localhost:8080/api/movies/new"
-# BACKEND_URL=https://in211-auriane-hxs21isig-auriane-martels-projects.vercel.app/api/movies/new
+# BACKEND_URL="http://localhost:8080/api/movies/new"
+BACKEND_URL=https://in211-auriane.vercel.app/api/movies/new
 TMDB_BASE_URL="https://api.themoviedb.org/3/movie/popular"
 
 # Loop through pages 1 to 10
