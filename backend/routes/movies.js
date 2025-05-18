@@ -15,9 +15,41 @@ router.get('/', function (req, res) {
 
 router.post('/new', function (req, res) {
     const movieRepository = appDataSource.getRepository(Movie);
+    // const newMovie = movieRepository.create({
+    //     title: req.body.title,
+    //     date: req.body.date,
+    // });
+
+    const {
+      title,
+      release_date,
+      adult,
+      backdrop_path = "/default-backdrop.jpg",
+      genre_ids = [],
+      original_language = "en",
+      original_title = title,
+      overview = "No overview available.",
+      popularity = 0.0,
+      poster_path = "/default-poster.jpg",
+      video = false,
+      vote_average = 0.0,
+      vote_count = 0
+    } = req.body;
+
     const newMovie = movieRepository.create({
-        title: req.body.title,
-        date: req.body.date,
+      title,
+      release_date,
+      adult,
+      backdrop_path,
+      genre_ids,
+      original_language,
+      original_title,
+      overview,
+      popularity,
+      poster_path,
+      video,
+      vote_average,
+      vote_count,
     });
 
     movieRepository

@@ -12,6 +12,11 @@
     color: white;
   }
 
+  .Filter-and-sort {
+    font-size: calc(10px + 1vmin);
+    margin-left: 20px;
+  }
+  
   .App-moviegrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
